@@ -1,0 +1,233 @@
+syntax = "proto3";
+
+package Mackerel.RemoteCache.Api;
+
+option csharp_namespace = "Mackerel.RemoteCache.Api.V1";
+option java_multiple_files = true;
+option java_outer_classname = "RemoteCacheApi";
+option java_package = "com.mackerel.remotecache.api.v1";
+
+import "messages.proto";
+
+// Service definition for the remote cache API. 
+// A distributed in-memory key-value store.
+service RemoteCacheService {
+  
+  // Gets the value at the specified key.
+  // As a side effect of calling this function:
+  // 1. A value gets expired if it reached it's TTL.
+  // 2. The value's last access time is updated.
+  // 3. The global hit/miss/count stats are updated.
+  rpc Get(GetRequest) 
+      returns (GetResponse) {}
+
+  // Gets the values at the specified keys.
+  // As a side effect of calling this function:
+  // 1. A value gets expired if it reached it's TTL.
+  // 2. The value's last access time is updated.
+  // 3. The global hit/miss/count stats are updated.
+  rpc GetMany(GetManyRequest) 
+      returns (GetManyResponse) {}
+
+  // Updates the last access time of a key.
+  // Only supported for partitions with sliding expiration set.
+  rpc Touch(TouchRequest) 
+      returns (TouchResponse) {}
+
+  // Updates the last access time of the specified keys.
+  // Only supported for partitions with sliding expiration set.
+  rpc TouchMany(TouchManyRequest) 
+      returns (TouchManyResponse) {}
+
+  // Returns the remaining time to live (ms) of a key.
+  // Returns -1 if the key has no expiration and -2 if the key does not exist.
+  rpc Ttl(TtlRequest) 
+      returns (TtlResponse) {}
+
+  // Returns the remaining time to live (ms) of the specified keys.
+  // Returns -1 if the key has no expiration and -2 if the key does not exist.
+  rpc TtlMany(TtlManyRequest) 
+      returns (TtlManyResponse) {}
+
+  // Sets a key-value in the cache. If it already exists,
+  // it's updated, if it doesn't exist, a new entry is created.
+  // As a side effect of calling this function:
+  // 1. The value's last access time is updated.
+  // 2. The global count stats are updated.
+  // 3. Any watchers of affected keys are notified
+  rpc Put(PutRequest) 
+      returns (PutResponse) {}
+
+  // Sets multiple key-value pairs in the cache. If they already exist,
+  // they're updated, if they don't exist, new entries are created.
+  // As a side effect of calling this function:
+  // 1. The values last access time is updated.
+  // 2. The global count stats are updated.
+  // 3. Any watchers of affected keys are notified
+  rpc PutMany(PutManyRequest) 
+      returns (PutManyResponse) {}
+	  
+  // Sets a key-value in the cache only if it doesn't already exist.
+  // As a side effect of calling this function:
+  // 1. The value's last access time is updated.
+  // 2. The global count stats are updated.
+  // 3. If the key already exists but is expired, it is updated.
+  // 4. Any watchers of affected keys are notified
+  rpc PutIfNotExists(PutIfNotExistsRequest) 
+      returns (PutIfNotExistsResponse) {}
+
+  // Sets multiple key-value pairs in the cache only if they don't already exist.
+  // As a side effect of calling this function:
+  // 1. The values last access time is updated.
+  // 2. The global count stats are updated.
+  // 3. If a key already exists but is expired, it is updated.
+  // 4. Any watchers of affected keys are notified
+  rpc PutIfNotExistsMany(PutIfNotExistsManyRequest) 
+      returns (PutIfNotExistsManyResponse) {}
+  
+  // Sets a key-value in the cache only if exists already.
+  // As a side effect of calling this function:
+  // 1. The value's last access time is updated.
+  // 2. The global count stats are updated.
+  // 3. If the key already exists but is expired, it is not updated.
+  // 4. Any watchers of affected keys are notified
+  rpc PutIfExists(PutIfExistsRequest) 
+      returns (PutIfExistsResponse) {}
+
+  // Sets multiple key-value pairs in the cache only if they exist already.
+  // As a side effect of calling this function:
+  // 1. The values last access time is updated.
+  // 2. The global count stats are updated.
+  // 3. If a key already exists but is expired, it is not updated.
+  // 4. Any watchers of affected keys are notified
+  rpc PutIfExistsMany(PutIfExistsManyRequest) 
+      returns (PutIfExistsManyResponse) {}
+
+  // Deletes a value by key.
+  // As a side effect of calling this function:
+  // 1. The global count stats are updated.
+  // 2. Any watchers of affected keys are notified
+  rpc Delete(DeleteRequest) 
+      returns (DeleteResponse) {}
+
+  // Deletes multiple values by key.
+  // As a side effect of calling this function:
+  // 1. The global count stats are updated.
+  // 2. Any watchers of affected keys are notified
+  rpc DeleteMany(DeleteManyRequest) 
+      returns (DeleteManyResponse) {}
+
+  // Flushes the entire partition and resets the count stats. The partition metadata remains in the cache.
+  // As a side effect of calling this function:
+  // 1. The global count stats are updated.
+  // 2. Any watchers of affected keys are notified
+  rpc FlushPartition(FlushPartitionRequest) 
+      returns (FlushPartitionResponse) {}
+
+  // Flushes the entire partition, resets the count stats, and removes the partition metadata from the cache.
+  // As a side effect of calling this function:
+  // 1. The global count stats are updated.
+  // 2. Any watchers of affected keys are notified
+  rpc DeletePartition(DeletePartitionRequest) 
+      returns (DeletePartitionResponse) {}
+
+  // Sets a partition in the cache. If it already exists,
+  // it's updated, if it doesn't exist, a new partition is created.
+  // Only partitions created through this method have the option
+  // to have their metadata persisted.
+  rpc PutPartition(PutPartitionRequest) 
+      returns (PutPartitionResponse) {}
+
+  // Removes all data from the cache across all partitions.
+  // As a side effect of calling this function:
+  // 1. The global count stats are updated.
+  // 2. Any watchers of affected keys are notified
+  rpc FlushAll(FlushAllRequest) 
+      returns (FlushAllResponse) {}
+
+  // Iterates all partitions and returns matching results based on a glob-style pattern.
+  // Only offers limited guarantees about the returned elements since the collection 
+  // that we iterate may change during the iteration process.
+  rpc ScanPartitions(ScanPartitionsRequest) 
+      returns (stream ScanPartitionsResponse) {}
+  
+  // Iterates all keys in a given partition and returns matching results based on a glob-style pattern. 
+  // Only offers limited guarantees about the returned elements since the collection 
+  // that we iterate may change during the iteration process.
+  // As a side effect of calling this function, any matching keys:
+  // 1. A value gets expired if it reached it's TTL.
+  rpc ScanKeys(ScanKeysRequest) 
+      returns (stream ScanKeysResponse) {}
+
+  // Increments a number stored at a key. If it doesn't exist, 
+  // it is assumed to be zero before running the request.
+  // As a side effect of calling this function:
+  // 1. A value gets expired if it reached it's TTL.
+  // 2. The value's last access time is updated.
+  // 3. The global hit/miss/count stats are updated.
+  // 4. Any watchers of affected keys are notified
+  rpc Increment(IncrementRequest) 
+      returns (IncrementResponse) {}
+
+  // Increments a number stored at a key by the requested value. If it doesn't exist, 
+  // it is assumed to be zero before running the request.
+  // As a side effect of calling this function:
+  // 1. A value gets expired if it reached it's TTL.
+  // 2. The value's last access time is updated.
+  // 3. The global hit/miss/count stats are updated.
+  // 4. Any watchers of affected keys are notified
+  rpc IncrementBy(IncrementByRequest) 
+      returns (IncrementByResponse) {}
+  
+  // Decrements a number stored at a key. If it doesn't exist, 
+  // it is assumed to be zero before running the request.
+  // As a side effect of calling this function:
+  // 1. A value gets expired if it reached it's TTL.
+  // 2. The value's last access time is updated.
+  // 3. The global hit/miss/count stats are updated.
+  // 4. Any watchers of affected keys are notified
+  rpc Decrement(DecrementRequest) 
+      returns (DecrementResponse) {}
+
+  // Decrements a number stored at a key by the requested value. If it doesn't exist, 
+  // it is assumed to be zero before running the request.
+  // As a side effect of calling this function:
+  // 1. A value gets expired if it reached it's TTL.
+  // 2. The value's last access time is updated.
+  // 3. The global hit/miss/count stats are updated.
+  // 4. Any watchers of affected keys are notified
+  rpc DecrementBy(DecrementByRequest) 
+      returns (DecrementByResponse) {}
+}
+
+service WatchService {
+  
+  // Watches for changes to keys. Both input and output are streams; 
+  // the input stream is for periodically sending heartbeats and the output
+  // stream sends key change events.
+  rpc Watch(stream WatchRequest) 
+      returns (stream WatchResponse) {}
+}
+
+service MaintenanceService {
+ 
+  // Returns the global stats such as hits, misses, etc.
+  rpc GetStats(GetStatsRequest) 
+      returns (CacheStats) {}
+
+  // Returns the configuration settings for the node
+  rpc GetConf(GetConfRequest)
+      returns (CacheConfiguration) {}
+
+  // Forces an immediate collection of all generations and compacts the LOH. This is not recommended.
+  rpc InvokeGC(InvokeGCRequest) 
+      returns (InvokeGCResponse) {}
+
+  // Ping the node to check availability
+  rpc Ping(PingRequest) 
+      returns (PongResponse) {}
+
+  // Returns partition level stats for a single partition. 
+  rpc GetPartitionStats(GetPartitionStatsRequest) 
+      returns (PartitionStats) {}
+}

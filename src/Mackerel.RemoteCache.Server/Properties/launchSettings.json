@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Mackerel.RemoteCache.Server": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:11211",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Local"
+      }
+    }
+  }
+}

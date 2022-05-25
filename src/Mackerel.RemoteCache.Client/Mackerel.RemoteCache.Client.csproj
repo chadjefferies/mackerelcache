@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Client to access a Mackerel remote cache cluster.</Description>
+    <PackageProjectUrl>https://github.com/chadjefferies/mackerelcache</PackageProjectUrl>
+    <AssemblyName>Mackerel.RemoteCache.Client</AssemblyName>
+    <AssemblyTitle>Mackerel.RemoteCache.Client</AssemblyTitle>
+    <Authors>Mackerel</Authors>
+    <Version>3.1.0</Version>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.20.1" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.46.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.46.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Channels" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\..\api\v1\*.proto" OutputDir=".\Rpc\Generated" GrpcServices="None" />
+    <Protobuf Update="..\..\api\v1\services.proto" GrpcServices="Client" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Rpc\Generated\" />
+  </ItemGroup>
+
+</Project>

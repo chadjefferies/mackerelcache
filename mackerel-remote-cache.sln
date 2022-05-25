@@ -1,0 +1,102 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Client", "src\Mackerel.RemoteCache.Client\Mackerel.RemoteCache.Client.csproj", "{20760353-5BD3-4B3E-A38B-6CED3CBCE924}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Server", "src\Mackerel.RemoteCache.Server\Mackerel.RemoteCache.Server.csproj", "{C3EC1273-B8B2-416F-80DF-8DA1731EA905}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Client.Tests", "test\Mackerel.RemoteCache.Client.Tests\Mackerel.RemoteCache.Client.Tests.csproj", "{896B2346-851E-44DD-8DD1-7D5F2D325A2C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Cli", "src\Mackerel.RemoteCache.Cli\Mackerel.RemoteCache.Cli.csproj", "{244399DF-3478-48DE-A504-0B920D566544}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Client.Extensions", "src\Mackerel.RemoteCache.Client.Extensions\Mackerel.RemoteCache.Client.Extensions.csproj", "{27BEC90E-BD03-4D8D-B785-2F2EAD52CFBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Server.Tests", "test\Mackerel.RemoteCache.Server.Tests\Mackerel.RemoteCache.Server.Tests.csproj", "{24CB6991-7489-450F-A86D-C19F8C5E9CD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{398A1D7A-F50F-4153-93A4-639A460B9D88}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5EDC5ABE-24C1-4298-A356-15FC72F840B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{25A436CA-0FB1-4F65-8D8F-0198081B0679}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{A0578664-74C4-452A-9331-0953FF8CD289}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Server.Benchmarks", "test\Mackerel.RemoteCache.Server.Benchmarks\Mackerel.RemoteCache.Server.Benchmarks.csproj", "{98385A0D-F25C-404E-B53A-77053C65C86F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Client.Benchmarks", "test\Mackerel.RemoteCache.Client.Benchmarks\Mackerel.RemoteCache.Client.Benchmarks.csproj", "{7ACE0E25-89C9-4AA9-9C92-196ABB85839F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v1", "v1", "{66F8BA01-3CA1-4962-8A0C-576E2C411CBC}"
+	ProjectSection(SolutionItems) = preProject
+		api\v1\messages.proto = api\v1\messages.proto
+		api\v1\services.proto = api\v1\services.proto
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mackerel.RemoteCache.Client.Extensions.Tests", "test\Mackerel.RemoteCache.Client.Extensions.Tests\Mackerel.RemoteCache.Client.Extensions.Tests.csproj", "{011F5926-1542-4332-AF5B-9F5F1A270BF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20760353-5BD3-4B3E-A38B-6CED3CBCE924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20760353-5BD3-4B3E-A38B-6CED3CBCE924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20760353-5BD3-4B3E-A38B-6CED3CBCE924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20760353-5BD3-4B3E-A38B-6CED3CBCE924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3EC1273-B8B2-416F-80DF-8DA1731EA905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3EC1273-B8B2-416F-80DF-8DA1731EA905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3EC1273-B8B2-416F-80DF-8DA1731EA905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3EC1273-B8B2-416F-80DF-8DA1731EA905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{896B2346-851E-44DD-8DD1-7D5F2D325A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896B2346-851E-44DD-8DD1-7D5F2D325A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896B2346-851E-44DD-8DD1-7D5F2D325A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{896B2346-851E-44DD-8DD1-7D5F2D325A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244399DF-3478-48DE-A504-0B920D566544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244399DF-3478-48DE-A504-0B920D566544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244399DF-3478-48DE-A504-0B920D566544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244399DF-3478-48DE-A504-0B920D566544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BEC90E-BD03-4D8D-B785-2F2EAD52CFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BEC90E-BD03-4D8D-B785-2F2EAD52CFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BEC90E-BD03-4D8D-B785-2F2EAD52CFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BEC90E-BD03-4D8D-B785-2F2EAD52CFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24CB6991-7489-450F-A86D-C19F8C5E9CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CB6991-7489-450F-A86D-C19F8C5E9CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24CB6991-7489-450F-A86D-C19F8C5E9CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24CB6991-7489-450F-A86D-C19F8C5E9CD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98385A0D-F25C-404E-B53A-77053C65C86F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98385A0D-F25C-404E-B53A-77053C65C86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98385A0D-F25C-404E-B53A-77053C65C86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98385A0D-F25C-404E-B53A-77053C65C86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ACE0E25-89C9-4AA9-9C92-196ABB85839F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ACE0E25-89C9-4AA9-9C92-196ABB85839F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ACE0E25-89C9-4AA9-9C92-196ABB85839F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ACE0E25-89C9-4AA9-9C92-196ABB85839F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{011F5926-1542-4332-AF5B-9F5F1A270BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011F5926-1542-4332-AF5B-9F5F1A270BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011F5926-1542-4332-AF5B-9F5F1A270BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011F5926-1542-4332-AF5B-9F5F1A270BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20760353-5BD3-4B3E-A38B-6CED3CBCE924} = {5EDC5ABE-24C1-4298-A356-15FC72F840B3}
+		{C3EC1273-B8B2-416F-80DF-8DA1731EA905} = {5EDC5ABE-24C1-4298-A356-15FC72F840B3}
+		{896B2346-851E-44DD-8DD1-7D5F2D325A2C} = {25A436CA-0FB1-4F65-8D8F-0198081B0679}
+		{244399DF-3478-48DE-A504-0B920D566544} = {5EDC5ABE-24C1-4298-A356-15FC72F840B3}
+		{27BEC90E-BD03-4D8D-B785-2F2EAD52CFBB} = {5EDC5ABE-24C1-4298-A356-15FC72F840B3}
+		{24CB6991-7489-450F-A86D-C19F8C5E9CD8} = {25A436CA-0FB1-4F65-8D8F-0198081B0679}
+		{98385A0D-F25C-404E-B53A-77053C65C86F} = {25A436CA-0FB1-4F65-8D8F-0198081B0679}
+		{7ACE0E25-89C9-4AA9-9C92-196ABB85839F} = {25A436CA-0FB1-4F65-8D8F-0198081B0679}
+		{66F8BA01-3CA1-4962-8A0C-576E2C411CBC} = {A0578664-74C4-452A-9331-0953FF8CD289}
+		{011F5926-1542-4332-AF5B-9F5F1A270BF9} = {25A436CA-0FB1-4F65-8D8F-0198081B0679}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DCC4F50-05B5-4D46-AA12-3B55F05D9C32}
+	EndGlobalSection
+EndGlobal

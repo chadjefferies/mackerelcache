@@ -1,0 +1,409 @@
+﻿syntax = "proto3";
+
+package Mackerel.RemoteCache.Api;
+
+option csharp_namespace = "Mackerel.RemoteCache.Api.V1";
+option java_multiple_files = true;
+option java_outer_classname = "RemoteCacheApi";
+option java_package = "com.mackerel.remotecache.api.v1";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+message GetRequest {
+  string partition_key = 1;
+  string key = 2;
+}
+
+message GetResponse {
+  bytes value = 1;
+}
+
+message GetManyRequest {
+  string partition_key = 1;
+  repeated string keys = 2;
+}
+
+message GetManyResponse {
+  map<string, bytes> entries = 1;
+}
+
+message TouchRequest {
+  string partition_key = 1;
+  string key = 2;
+}
+
+message TouchResponse { 
+  WriteResult result = 1;
+}
+
+message TouchManyRequest {
+  string partition_key = 1;
+  repeated string keys = 2;
+}
+
+message TouchManyResponse { 
+  int32 touched = 1;
+}
+
+message TtlRequest {
+  string partition_key = 1;
+  string key = 2;
+}
+
+message TtlResponse {
+  int64 value_ms = 1;
+}
+
+message TtlManyRequest {
+  string partition_key = 1;
+  repeated string keys = 2;
+}
+
+message TtlManyResponse {
+  map<string, int64> entries = 1;
+}
+
+message PutRequest {
+  string partition_key = 1;
+  string key = 2;
+  bytes value = 3;
+}
+
+message PutResponse {  
+  WriteResult result = 1;
+}
+
+message PutIfNotExistsRequest {
+  string partition_key = 1;
+  string key = 2;
+  bytes value = 3;
+}
+
+message PutIfNotExistsResponse {  
+  WriteResult result = 1;
+}
+
+message PutIfExistsRequest {
+  string partition_key = 1;
+  string key = 2;
+  bytes value = 3;
+}
+
+message PutIfExistsResponse {  
+  WriteResult result = 1;
+}
+
+message PutManyRequest {
+  string partition_key = 1;
+  map<string, bytes> entries = 2;
+}
+
+message PutManyResponse {
+  WriteResult result = 1;
+}
+
+message PutIfNotExistsManyRequest {
+  string partition_key = 1;
+  map<string, bytes> entries = 2;
+}
+
+message PutIfNotExistsManyResponse {
+  WriteResult result = 1;
+}
+
+message PutIfExistsManyRequest {
+  string partition_key = 1;
+  map<string, bytes> entries = 2;
+}
+
+message PutIfExistsManyResponse {
+  WriteResult result = 1;
+}
+
+message DeleteRequest {
+  string partition_key = 1;
+  string key = 2;
+}
+
+message DeleteResponse {
+  WriteResult result = 1;
+}
+
+message DeleteManyRequest {
+  string partition_key = 1;
+  repeated string keys = 2;
+}
+
+message DeleteManyResponse {
+  int32 deleted = 1;
+}
+
+message DeletePartitionRequest {
+  string partition_key = 1;
+}
+
+message DeletePartitionResponse {
+  WriteResult result = 1;
+}
+
+message IncrementRequest {
+  string partition_key = 1;
+  string key = 2;
+}
+
+message IncrementResponse {  
+  int64 value = 1;
+  WriteResult result = 2;
+}
+
+message IncrementByRequest {
+  string partition_key = 1;
+  string key = 2;
+  int64 value = 3;
+}
+
+message IncrementByResponse {  
+  int64 value = 1;
+  WriteResult result = 2;
+}
+
+message DecrementRequest {
+  string partition_key = 1;
+  string key = 2;
+}
+
+message DecrementResponse {  
+  int64 value = 1;
+  WriteResult result = 2;
+}
+
+message DecrementByRequest {
+  string partition_key = 1;
+  string key = 2;
+  int64 value = 3;
+}
+
+message DecrementByResponse {  
+  int64 value = 1;
+  WriteResult result = 2;
+}
+
+enum WriteResult {
+  SUCCESS = 0;
+  MISSING_PARTITION_KEY = 1;
+  MISSING_KEY = 2;
+  MISSING_VALUE = 3;
+  KEY_ALREADY_EXISTS = 4;
+  KEY_TOO_LARGE = 5;
+  KEY_DOES_NOT_EXIST = 6;
+  PARTITION_DOES_NOT_EXIST = 7;
+  VALUE_TOO_LARGE = 8;
+  // A partition key contained invalid characters.
+  INVALID_PARTITION_KEY = 9;
+  // There is not enough free space left in the cache to fulfill the current request.
+  INSUFFICIENT_CAPACITY = 10;
+  // An operation was performed on a key that's not supported. 
+  // e.g. calling Increment on a key that stores a literal string
+  INVALID_TYPE_OPERATION = 11;
+  // A partition cannot be deleted because it is in use, typically by a watcher.
+  PARTITION_IN_USE = 12;
+}
+
+message FlushPartitionRequest {
+  string partition_key = 1;
+}
+
+message FlushPartitionResponse {}
+
+message FlushAllRequest {}
+
+message FlushAllResponse {}
+
+message GetStatsRequest {}
+
+message CacheStats {
+  int64 current_items = 1;
+  int64 total_items = 2;
+  int64 hits = 3;
+  int64 misses = 4;
+  double hit_rate = 5;
+  int64 total_evictions = 6;
+  int64 total_expirations = 7;
+  google.protobuf.Duration uptime = 8;
+  google.protobuf.Timestamp modified_date = 9;
+  int32 partitions = 10;
+  int64 memory_used = 11;
+  string memory_used_human = 12;
+  int64 allocated_memory = 13;
+  string allocated_memory_human = 14;
+  int32 pid = 15;
+  int64 server_total_memory = 16;
+  string server_total_memory_human = 17;
+  int64 paged_system_memory_size = 18;
+  string paged_system_memory_size_human = 19;
+  int64 paged_memory_size = 20;
+  string paged_memory_size_human = 21;
+  int64 virtual_memory_size = 22;
+  string virtual_memory_size_human = 23;
+  int64 working_set = 24;
+  string working_set_human = 25;
+  int64 peak_paged_memory_size = 26;
+  string peak_paged_memory_size_human = 27;
+  int64 peak_virtual_memory_size = 28;
+  string peak_virtual_memory_size_human = 29;
+  int64 peak_working_set = 30;
+  string peak_working_set_human = 31;
+  string server_name = 32;
+  int32 server_processors = 33;
+  google.protobuf.Duration total_processor_time = 34;
+  int32 garbage_collections = 35;
+  google.protobuf.Duration evicted_time = 36;
+  int32 current_watches = 37;
+  int64 total_watch_events = 38;
+  int64 total_cache_size = 39;
+  string total_cache_size_human = 40;
+  int64 total_reserved_cache_size = 41;
+  string total_reserved_cache_size_human = 42;
+  int32 current_watch_streams = 43;
+  int64 heap_fragmentation = 44;
+  string heap_fragmentation_human = 45;
+  int64 total_heap_size = 46;
+  string total_heap_size_human = 47;
+  repeated int64 heap_sizes = 48;
+  double gc_pause_time_percentage = 49;
+  int64 heap_committed = 50;
+  string heap_committed_human = 51;
+}
+
+message GetPartitionStatsRequest {
+  string partition_key = 1;
+}
+
+message PartitionStats {
+  string partition_key = 1;
+  google.protobuf.Timestamp last_hit_date = 2;
+  int32 total_hits = 3;
+  int32 total_misses = 4;
+  double hit_rate = 5;
+  int32 total_eviction_count = 6;
+  int32 total_expired_count = 7;
+  int32 current_item_count = 8;
+  google.protobuf.Duration expiration = 9;
+  ExpirationType expiration_type = 10;
+  bool persisted = 11;
+  int64 total_cache_size = 12;
+  EvictionPolicy eviction_policy = 13;
+  int64 max_cache_size = 14;
+  google.protobuf.Timestamp create_date = 15;
+}
+
+message PutPartitionRequest { 
+  string partition_key = 1;
+  google.protobuf.Duration expiration = 2;
+  ExpirationType expiration_type = 3;
+  bool persist = 4;
+  EvictionPolicy eviction_policy = 5;
+  // The quota of cache reserved for this partition.
+  int64 max_cache_size = 6;
+}
+
+enum EvictionPolicy {
+  // Evicts keys based on an approximated Least Recently Used algorithm.
+  LRU = 0;
+  // Don't evict and return an error if over capacity.
+  NO_EVICTION = 1;
+}
+
+message PutPartitionResponse {
+  WriteResult result = 1;
+}
+
+message GetConfRequest {}
+
+message CacheConfiguration {
+  int32 key_eviction_samples = 1;
+  int32 max_bytes_per_key = 2;
+  int32 max_bytes_per_value = 3;
+  double max_cache_size = 4;
+  string max_cache_size_human = 5;
+  double eviction_sample_rate = 6;
+}
+
+message InvokeGCRequest {}
+
+message InvokeGCResponse {}
+
+message PingRequest {}
+
+message PongResponse {
+  string result = 1;
+}
+
+message ScanPartitionsRequest {
+  string pattern = 1;
+  int32 count= 2;
+}
+
+message ScanPartitionsResponse {
+  PartitionStats stats = 1;
+}
+
+message ScanKeysRequest {
+  string partition_key = 1;
+  string pattern = 2;
+  int32 count= 3;
+  int32 offset = 4;
+}
+
+message ScanKeysResponse {
+  string key = 1;
+  bytes value = 2;
+  int32 index = 3;
+}
+
+enum ExpirationType {
+  SLIDING = 0;
+  ABSOLUTE = 1;
+}
+
+// A request to either create a new watch stream, send heartbeats for an existing stream or cancel an existing watch stream.
+message WatchRequest {
+  oneof request_union {
+    WatchCreateRequest create_request = 1;
+    WatchCancelRequest cancel_request = 2;
+    WatchKeepAliveRequest keep_alive_request = 3;
+  }
+}
+
+// A request to create a new watch. watch_id should be unique per client and partition and allows multiple watches for a single partition.
+message WatchCreateRequest {
+  string watch_id = 1;
+  string partition_key = 2;
+  string key = 3;
+  repeated WatchEventType filters = 4;
+}
+
+// Clients should send periodic heartbeats on a watch stream, otherwise the server will terminate the stream and all associated watches.
+message WatchKeepAliveRequest { }
+
+// A request to cancel a watch.
+message WatchCancelRequest {
+  string watch_id = 1;
+  string partition_key = 2;
+}
+
+message WatchResponse {
+  string watch_id = 1;
+  string partition_key = 2;
+  string key = 3;
+  bytes value = 4;
+  WatchEventType watch_event_type = 5;
+}
+
+enum WatchEventType {
+  WRITE = 0;
+  DELETE = 1;
+  EVICT = 2;
+  EXPIRE = 3;
+}

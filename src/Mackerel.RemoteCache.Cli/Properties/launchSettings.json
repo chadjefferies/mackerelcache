@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Mackerel.RemoteCache.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "localhost"
+    }
+  }
+}

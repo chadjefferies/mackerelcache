@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Extension methods for the Mackerel remote cache client designed to work with Microsoft's DI framework.</Description>
+    <PackageProjectUrl>https://github.com/chadjefferies/mackerelcache</PackageProjectUrl>
+    <AssemblyName>Mackerel.RemoteCache.Client.Extensions</AssemblyName>
+    <AssemblyTitle>Mackerel.RemoteCache.Client.Extensions</AssemblyTitle>
+    <Authors>Mackerel</Authors>
+    <Version>3.1.0</Version>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mackerel.RemoteCache.Client\Mackerel.RemoteCache.Client.csproj" />
+  </ItemGroup>
+
+</Project>
