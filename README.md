@@ -1,4 +1,4 @@
-# Mackerel Remote Cache
+# Mackerel Cache
 
 ### About
 
