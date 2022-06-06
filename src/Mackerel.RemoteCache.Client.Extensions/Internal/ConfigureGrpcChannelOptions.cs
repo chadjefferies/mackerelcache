@@ -15,7 +15,7 @@ namespace Mackerel.RemoteCache.Client.Extensions.Internal
 
         public void Configure(GrpcChannelOptions options)
         {
-            _configuration.Bind("RemoteCache:Grpc", options);
+            _configuration.Bind("MackerelCache:Grpc", options);
         }
     }
 }

@@ -16,16 +16,16 @@ namespace Mackerel.RemoteCache.Client.Extensions
     /// <summary>
     /// Extension methods for setting up Mackerel remote cache related services in an <see cref="IServiceCollection" />.
     /// </summary>
-    public static class RemoteCacheServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
         /// <summary>
         /// Adds a <see cref="CacheClientOptions" /> to the specified <see cref="IServiceCollection" />. 
         /// </summary>
         /// <remarks>
-        /// Calling <see cref="AddRemoteCache{T}(IServiceCollection)"/> automatically adds cache options. 
+        /// Calling <see cref="AddMackerelCache{T}(IServiceCollection)"/> automatically adds cache options. 
         /// </remarks>
         /// <returns></returns>
-        public static IServiceCollection AddCacheClientOptions(this IServiceCollection services, Action<CacheClientOptions> setupClientAction, Action<GrpcChannelOptions> setupGrpcAction)
+        public static IServiceCollection AddMackerelClientOptions(this IServiceCollection services, Action<CacheClientOptions> setupClientAction, Action<GrpcChannelOptions> setupGrpcAction)
         {
             services.AddOptions();
             services.TryAddTransient<IConfigureOptions<CacheClientOptions>, ConfigureCacheClientOptions>();
@@ -42,12 +42,12 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds a <see cref="ICacheConnection"/> to the specified <see cref="IServiceCollection" />.
         /// </summary>
         /// <remarks>
-        /// Calling <see cref="AddRemoteCache{T}(IServiceCollection)"/> automatically adds an <see cref="ICacheConnection"/>. 
+        /// Calling <see cref="AddMackerelCache{T}(IServiceCollection)"/> automatically adds an <see cref="ICacheConnection"/>. 
         /// </remarks>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddRemoteCacheConnection(this IServiceCollection services, Action<CacheClientOptions> setupClientAction, Action<GrpcChannelOptions> setupGrpcAction)
+        public static IServiceCollection AddMackerelCacheConnection(this IServiceCollection services, Action<CacheClientOptions> setupClientAction, Action<GrpcChannelOptions> setupGrpcAction)
         {
-            services.AddCacheClientOptions(setupClientAction, setupGrpcAction);
+            services.AddMackerelClientOptions(setupClientAction, setupGrpcAction);
             services.TryAddSingleton(sp =>
             {
                 var options = sp.GetRequiredService<IOptions<CacheClientOptions>>();
@@ -65,12 +65,12 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds a <see cref="ICacheConnection"/> to the specified <see cref="IServiceCollection" />.
         /// </summary>
         /// <remarks>
-        /// Calling <see cref="AddRemoteCache{T}(IServiceCollection)"/> automatically adds an <see cref="ICacheConnection"/>. 
+        /// Calling <see cref="AddMackerelCache{T}(IServiceCollection)"/> automatically adds an <see cref="ICacheConnection"/>. 
         /// </remarks>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddRemoteCacheConnection(this IServiceCollection services, Action<CacheClientOptions> setupAction)
+        public static IServiceCollection AddMackerelCacheConnection(this IServiceCollection services, Action<CacheClientOptions> setupAction)
         {
-            services.AddRemoteCacheConnection(setupAction, _ => { });
+            services.AddMackerelCacheConnection(setupAction, _ => { });
             return services;
         }
 
@@ -78,12 +78,12 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds a <see cref="ICacheConnection"/> to the specified <see cref="IServiceCollection" />.
         /// </summary>
         /// <remarks>
-        /// Calling <see cref="AddRemoteCache{T}(IServiceCollection)"/> automatically adds an <see cref="ICacheConnection"/>. 
+        /// Calling <see cref="AddMackerelCache{T}(IServiceCollection)"/> automatically adds an <see cref="ICacheConnection"/>. 
         /// </remarks>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddRemoteCacheConnection(this IServiceCollection services)
+        public static IServiceCollection AddMackerelCacheConnection(this IServiceCollection services)
         {
-            services.AddRemoteCacheConnection(_ => { }, _ => { });
+            services.AddMackerelCacheConnection(_ => { }, _ => { });
             return services;
         }
 
@@ -92,9 +92,9 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds a <see cref="ICache{T}"/> to the specified <see cref="IServiceCollection" />.
         /// </summary>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddRemoteCache<T>(this IServiceCollection services, Action<CacheClientOptions> setupClientAction, Action<GrpcChannelOptions> setupGrpcAction)
+        public static IServiceCollection AddMackerelCache<T>(this IServiceCollection services, Action<CacheClientOptions> setupClientAction, Action<GrpcChannelOptions> setupGrpcAction)
         {
-            services.AddRemoteCacheConnection(setupClientAction, setupGrpcAction);
+            services.AddMackerelCacheConnection(setupClientAction, setupGrpcAction);
             services.TryAddSingleton<IHashFunction, ConsistentHashFunction>();
             services.TryAddSingleton<IRouter, KeyRouter>();
             services.TryAddSingleton<ICache<T>>(sp =>
@@ -113,9 +113,9 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds a <see cref="ICache{T}"/> to the specified <see cref="IServiceCollection" />.
         /// </summary>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddRemoteCache<T>(this IServiceCollection services, Action<CacheClientOptions> setupAction)
+        public static IServiceCollection AddMackerelCache<T>(this IServiceCollection services, Action<CacheClientOptions> setupAction)
         {
-            services.AddRemoteCache<T>(setupAction, _ => { });
+            services.AddMackerelCache<T>(setupAction, _ => { });
             return services;
         }
 
@@ -123,9 +123,9 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds a <see cref="ICache{T}"/> to the specified <see cref="IServiceCollection" />.
         /// </summary>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddRemoteCache<T>(this IServiceCollection services)
+        public static IServiceCollection AddMackerelCache<T>(this IServiceCollection services)
         {
-            services.AddRemoteCache<T>(_ => { }, _ => { });
+            services.AddMackerelCache<T>(_ => { }, _ => { });
             return services;
         }
 
@@ -138,9 +138,9 @@ namespace Mackerel.RemoteCache.Client.Extensions
         {
             services.AddMemoryCache();
             services.AddSingleton<ISystemClock, SystemClock>();
-            services.AddRemoteCacheConnection(setupClientAction, setupGrpcAction);
+            services.AddMackerelCacheConnection(setupClientAction, setupGrpcAction);
             services.AddSingleton<ICacheCodec<byte[]>, BinaryCacheCodec>();
-            services.AddRemoteCache<byte[]>();
+            services.AddMackerelCache<byte[]>();
             services.TryAddTransient<IConfigureOptions<MackerelDistributedCacheOptions>, ConfigureMackerelDistributedCacheOptions>();
             if (setupAction != null)
                 services.PostConfigure(setupAction);
@@ -152,7 +152,7 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds an implementation of <see cref="IDistributedCache" /> that connects to a Mackerel remote caching cluster.
         /// </summary>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddMackerelRemoteDistributedCache(this IServiceCollection services, Action<MackerelDistributedCacheOptions> setupAction, Action<CacheClientOptions> setupClientAction)
+        public static IServiceCollection AddMackerelDistributedCache(this IServiceCollection services, Action<MackerelDistributedCacheOptions> setupAction, Action<CacheClientOptions> setupClientAction)
         {
             services.AddMackerelRemoteDistributedCache(setupAction, setupClientAction, _ => { });
             return services;
@@ -162,7 +162,7 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds an implementation of <see cref="IDistributedCache" /> that connects to a Mackerel remote caching cluster.
         /// </summary>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddMackerelRemoteDistributedCache(this IServiceCollection services, Action<MackerelDistributedCacheOptions> setupAction)
+        public static IServiceCollection AddMackerelDistributedCache(this IServiceCollection services, Action<MackerelDistributedCacheOptions> setupAction)
         {
             services.AddMackerelRemoteDistributedCache(setupAction, _ => { }, _ => { });
             return services;
@@ -172,7 +172,7 @@ namespace Mackerel.RemoteCache.Client.Extensions
         /// Adds an implementation of <see cref="IDistributedCache" /> that connects to a Mackerel remote caching cluster.
         /// </summary>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddMackerelRemoteDistributedCache(this IServiceCollection services)
+        public static IServiceCollection AddMackerelDistributedCache(this IServiceCollection services)
         {
             services.AddMackerelRemoteDistributedCache(_ => { }, _ => { }, _ => { });
             return services;

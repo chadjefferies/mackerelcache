@@ -15,7 +15,7 @@ namespace Mackerel.RemoteCache.Client.Extensions.Internal
 
         public void Configure(CacheClientOptions options)
         {
-            _configuration.Bind("RemoteCache", options);
+            _configuration.Bind("MackerelCache", options);
         }
     }
 }

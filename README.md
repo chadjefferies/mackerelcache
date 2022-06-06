@@ -93,7 +93,7 @@ This can be supplied in your call to `GetCache` or overridden through DI by addi
 ```csharp
 ...
 services.AddSingleton<IRouter, PartitionRouter>();
-services.AddRemoteCache<string>();
+services.AddMackerelCache<string>();
 ...
 ```
 
@@ -116,7 +116,7 @@ If you're using `Microsoft.Extensions.DependencyInjection`, consider adding the 
 // add your encoder/decoder
 services.AddSingleton<ICacheCodec<string>, StringCacheCodec>();
 // setup the ICache<T>
-services.AddRemoteCache<string>();
+services.AddMackerelCache<string>();
 ```
 
 You can configure the client by adding the following to your settings file:
@@ -141,7 +141,7 @@ This package sits on top of the `Mackerel.RemoteCache.Client` and can be used to
 ```csharp
 services.AddSession();
 ...
-services.AddMackerelRemoteDistributedCache(o =>
+services.AddMackerelDistributedCache(o =>
 {
     o.Partition = "my_partition";
     o.ExpirationType = ExpirationType.Sliding;
@@ -154,7 +154,7 @@ app.UseSession();
 You can optionally configure the IDistributedCache by adding the following sub-section to the configuration outlined above:
 ```json
 {
-  "RemoteCache": {
+  "MackerelCache": {
    ... // see above for options
    "DistributedCache": {
       "Partition": "my_partition",

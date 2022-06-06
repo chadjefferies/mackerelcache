@@ -12,13 +12,13 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
     public class CacheServiceExtensionsTests
     {
         [Fact]
-        public void AddRemoteCacheConnection_RegistersDistributedCacheAsSingleton()
+        public void AddMackerelCacheConnection_RegistersDistributedCacheAsSingleton()
         {
             var configuration = new ConfigurationBuilder()
                  .Build();
             var services = new ServiceCollection();
             services.AddScoped(typeof(IConfiguration), sp => configuration);
-            services.AddRemoteCacheConnection();
+            services.AddMackerelCacheConnection();
             var connection = services.FirstOrDefault(desc => desc.ServiceType == typeof(ICacheConnection));
             var serviceProvider = services.BuildServiceProvider();
 
@@ -28,7 +28,7 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
         }
 
         [Fact]
-        public void AddRemoteCacheConnection_DoesNotReplacePreviouslyUserRegisteredServices()
+        public void AddMackerelCacheConnection_DoesNotReplacePreviouslyUserRegisteredServices()
         {
             var configuration = new ConfigurationBuilder()
                  .Build();
@@ -37,7 +37,7 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
             services.AddScoped(typeof(ILogger<ICacheConnection>), sp => Mock.Of<ILogger<ICacheConnection>>());
             services.AddScoped(typeof(ICacheConnection), sp => Mock.Of<ICacheConnection>());
 
-            services.AddRemoteCacheConnection();
+            services.AddMackerelCacheConnection();
 
             var serviceProvider = services.BuildServiceProvider();
             var connection = services.FirstOrDefault(desc => desc.ServiceType == typeof(ICacheConnection));
@@ -48,14 +48,14 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
         }
 
         [Fact]
-        public void AddRemoteCache_RegistersDistributedCacheAsSingleton()
+        public void AddMackerelCache_RegistersDistributedCacheAsSingleton()
         {
             var configuration = new ConfigurationBuilder()
                  .Build();
             var services = new ServiceCollection();
             services.AddScoped(typeof(IConfiguration), sp => configuration);
             services.AddSingleton<ICacheCodec<string>, StringCacheCodec>();
-            services.AddRemoteCache<string>();
+            services.AddMackerelCache<string>();
             var cache = services.FirstOrDefault(desc => desc.ServiceType == typeof(ICache<string>));
             var serviceProvider = services.BuildServiceProvider();
 
@@ -65,7 +65,7 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
         }
 
         [Fact]
-        public void AddRemoteCache_DoesNotReplacePreviouslyUserRegisteredServices()
+        public void AddMackerelCache_DoesNotReplacePreviouslyUserRegisteredServices()
         {
             var configuration = new ConfigurationBuilder()
                  .Build();
@@ -74,7 +74,7 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
             services.AddScoped(typeof(ILogger<ICacheConnection>), sp => Mock.Of<ILogger<ICacheConnection>>());
             services.AddScoped(typeof(ICache<string>), sp => Mock.Of<ICache<string>>());
 
-            services.AddRemoteCache<string>();
+            services.AddMackerelCache<string>();
 
             var serviceProvider = services.BuildServiceProvider();
             var connection = services.FirstOrDefault(desc => desc.ServiceType == typeof(ICache<string>));
@@ -85,10 +85,10 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
         }
 
         [Fact]
-        public void AddMackerelRemoteDistributedCache_RegistersDistributedCacheAsSingleton()
+        public void AddMackerelDistributedCache_RegistersDistributedCacheAsSingleton()
         {
             var services = new ServiceCollection();
-            services.AddMackerelRemoteDistributedCache();
+            services.AddMackerelDistributedCache();
             var distributedCache = services.FirstOrDefault(desc => desc.ServiceType == typeof(IDistributedCache));
 
             Assert.NotNull(distributedCache);
@@ -96,7 +96,7 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
         }
 
         [Fact]
-        public void AddMackerelRemoteDistributedCache_ReplacesPreviouslyUserRegisteredServices()
+        public void AddMackerelDistributedCache_ReplacesPreviouslyUserRegisteredServices()
         {
             var configuration = new ConfigurationBuilder()
                  .Build();
@@ -106,7 +106,7 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
             services.AddScoped(typeof(ILogger<MackerelDistributedCache>), sp => Mock.Of<ILogger<MackerelDistributedCache>>());
             services.AddScoped(typeof(IDistributedCache), sp => Mock.Of<IDistributedCache>());
 
-            services.AddMackerelRemoteDistributedCache();
+            services.AddMackerelDistributedCache();
 
             var serviceProvider = services.BuildServiceProvider();
             var distributedCache = services.FirstOrDefault(desc => desc.ServiceType == typeof(IDistributedCache));
@@ -117,10 +117,10 @@ namespace Mackerel.RemoteCache.Client.Extensions.Tests
         }
 
         [Fact]
-        public void AddMackerelRemoteDistributedCache_Allows_Chaining()
+        public void AddMackerelDistributedCache_Allows_Chaining()
         {
             var services = new ServiceCollection();
-            Assert.Same(services, services.AddMackerelRemoteDistributedCache());
+            Assert.Same(services, services.AddMackerelDistributedCache());
         }
     }
 }
