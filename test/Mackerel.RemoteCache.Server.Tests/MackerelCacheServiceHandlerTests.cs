@@ -19,7 +19,7 @@ using Xunit;
 
 namespace Mackerel.RemoteCache.Server.Tests
 {
-    public class RemoteCacheServiceHandlerTests
+    public class MackerelCacheServiceHandlerTests
     {
         private readonly Mock<ILogger<MemoryStore>> _mockLogger;
         private readonly Mock<ISystemClock> _mockClock;
@@ -27,7 +27,7 @@ namespace Mackerel.RemoteCache.Server.Tests
         private readonly Mock<ISchedulerFactory> _mockSchedulerFactory;
         private readonly Mock<IHostApplicationLifetime> _mockHostLifetime;
 
-        public RemoteCacheServiceHandlerTests()
+        public MackerelCacheServiceHandlerTests()
         {
             _mockClock = new Mock<ISystemClock>();
             _mockScheduler = new Mock<IScheduler>();
@@ -70,7 +70,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
 
             var partitionKey = "partition";
             var itemKey = "key20";
@@ -108,7 +108,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var request = new GetRequest
@@ -142,7 +142,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putRequest = new PutRequest
@@ -193,7 +193,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putRequest = new PutRequest
@@ -275,7 +275,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -332,7 +332,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -405,7 +405,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -509,7 +509,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -549,7 +549,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var request = new GetManyRequest
@@ -585,7 +585,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -645,7 +645,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -744,7 +744,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -803,7 +803,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -882,7 +882,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -1002,7 +1002,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -1078,7 +1078,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -1156,7 +1156,7 @@ namespace Mackerel.RemoteCache.Server.Tests
             };
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putPartitionRequest = new PutPartitionRequest
@@ -1206,7 +1206,7 @@ namespace Mackerel.RemoteCache.Server.Tests
             };
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var request = new GetPartitionStatsRequest
@@ -1244,7 +1244,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putPartitionRequest = new PutPartitionRequest
@@ -1301,7 +1301,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
             var itemKey = "key20";
             var itemValue = ByteString.CopyFrom(new byte[] { 2 });
@@ -1352,7 +1352,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
             var itemKey = "key20";
             var itemValue = ByteString.CopyFrom(new byte[] { 2 });
@@ -1400,7 +1400,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putRequest = new PutRequest
@@ -1451,7 +1451,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -1506,7 +1506,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putPartitionRequest = new PutPartitionRequest
@@ -1541,7 +1541,7 @@ namespace Mackerel.RemoteCache.Server.Tests
             _mockClock
                .SetupGet(x => x.UtcNow)
                .Returns(DateTime.Parse("2019-04-25 3:01 PM"));
-            server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var ttlRequest = new TtlRequest
             {
                 PartitionKey = partitionKey,
@@ -1574,7 +1574,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putPartitionRequest = new PutPartitionRequest
@@ -1612,7 +1612,7 @@ namespace Mackerel.RemoteCache.Server.Tests
             _mockClock
                 .SetupGet(x => x.UtcNow)
                 .Returns(DateTime.Parse("2019-04-25 3:01 PM"));
-            server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var ttlRequest = new TtlManyRequest
             {
                 PartitionKey = partitionKey
@@ -1650,7 +1650,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var request = new IncrementRequest
@@ -1684,7 +1684,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var request = new IncrementByRequest
@@ -1719,7 +1719,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var request = new DecrementRequest
@@ -1753,7 +1753,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
 
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var request = new DecrementByRequest
@@ -1782,7 +1782,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             var conf = new CacheServerOptions();
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -1832,7 +1832,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             var conf = new CacheServerOptions();
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var items = new Dictionary<string, ByteString>
@@ -1880,7 +1880,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             var conf = new CacheServerOptions();
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putPartitionRequest = new PutPartitionRequest
@@ -1943,7 +1943,7 @@ namespace Mackerel.RemoteCache.Server.Tests
 
             var conf = new CacheServerOptions();
             using var memoryCache = new MemoryStore(_mockLogger.Object, conf, new RuntimeStatistics(conf, _mockClock.Object), new StubMemoryStorage());
-            var server = new RemoteCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
+            var server = new MackerelCacheServiceHandler(memoryCache, _mockClock.Object, _mockSchedulerFactory.Object, _mockHostLifetime.Object);
             var partitionKey = "partition";
 
             var putPartitionRequest = new PutPartitionRequest

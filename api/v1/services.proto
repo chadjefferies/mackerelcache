@@ -4,14 +4,14 @@ package Mackerel.RemoteCache.Api;
 
 option csharp_namespace = "Mackerel.RemoteCache.Api.V1";
 option java_multiple_files = true;
-option java_outer_classname = "RemoteCacheApi";
+option java_outer_classname = "MackerelCacheApi";
 option java_package = "com.mackerel.remotecache.api.v1";
 
 import "messages.proto";
 
-// Service definition for the remote cache API. 
+// Service definition for the Mackerel cache API. 
 // A distributed in-memory key-value store.
-service RemoteCacheService {
+service MackerelCacheService {
   
   // Gets the value at the specified key.
   // As a side effect of calling this function:

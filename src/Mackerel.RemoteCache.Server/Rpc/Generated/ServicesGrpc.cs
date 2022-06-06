@@ -9,12 +9,12 @@ using grpc = global::Grpc.Core;
 
 namespace Mackerel.RemoteCache.Api.V1 {
   /// <summary>
-  /// Service definition for the remote cache API. 
+  /// Service definition for the Mackerel cache API. 
   /// A distributed in-memory key-value store.
   /// </summary>
-  public static partial class RemoteCacheService
+  public static partial class MackerelCacheService
   {
-    static readonly string __ServiceName = "Mackerel.RemoteCache.Api.RemoteCacheService";
+    static readonly string __ServiceName = "Mackerel.RemoteCache.Api.MackerelCacheService";
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
@@ -344,9 +344,9 @@ namespace Mackerel.RemoteCache.Api.V1 {
       get { return global::Mackerel.RemoteCache.Api.V1.ServicesReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Base class for server-side implementations of RemoteCacheService</summary>
-    [grpc::BindServiceMethod(typeof(RemoteCacheService), "BindService")]
-    public abstract partial class RemoteCacheServiceBase
+    /// <summary>Base class for server-side implementations of MackerelCacheService</summary>
+    [grpc::BindServiceMethod(typeof(MackerelCacheService), "BindService")]
+    public abstract partial class MackerelCacheServiceBase
     {
       /// <summary>
       /// Gets the value at the specified key.
@@ -733,7 +733,7 @@ namespace Mackerel.RemoteCache.Api.V1 {
     /// <summary>Creates service definition that can be registered with a server</summary>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static grpc::ServerServiceDefinition BindService(RemoteCacheServiceBase serviceImpl)
+    public static grpc::ServerServiceDefinition BindService(MackerelCacheServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_Get, serviceImpl.Get)
@@ -767,7 +767,7 @@ namespace Mackerel.RemoteCache.Api.V1 {
     /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, RemoteCacheServiceBase serviceImpl)
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, MackerelCacheServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_Get, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Mackerel.RemoteCache.Api.V1.GetRequest, global::Mackerel.RemoteCache.Api.V1.GetResponse>(serviceImpl.Get));
       serviceBinder.AddMethod(__Method_GetMany, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Mackerel.RemoteCache.Api.V1.GetManyRequest, global::Mackerel.RemoteCache.Api.V1.GetManyResponse>(serviceImpl.GetMany));

@@ -12,18 +12,18 @@ using Mackerel.RemoteCache.Server.Util;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Internal;
 using Quartz;
-using static Mackerel.RemoteCache.Api.V1.RemoteCacheService;
+using static Mackerel.RemoteCache.Api.V1.MackerelCacheService;
 
 namespace Mackerel.RemoteCache.Server.Rpc
 {
-    public class RemoteCacheServiceHandler : RemoteCacheServiceBase
+    public class MackerelCacheServiceHandler : MackerelCacheServiceBase
     {
         private readonly MemoryStore _cache;
         private readonly ISystemClock _systemClock;
         private readonly ISchedulerFactory _schedulerFactory;
         private readonly IHostApplicationLifetime _hostLifetime;
 
-        public RemoteCacheServiceHandler(MemoryStore cache, ISystemClock systemClock, ISchedulerFactory schedulerFactory, IHostApplicationLifetime hostLifetime)
+        public MackerelCacheServiceHandler(MemoryStore cache, ISystemClock systemClock, ISchedulerFactory schedulerFactory, IHostApplicationLifetime hostLifetime)
         {
             _cache = cache;
             _systemClock = systemClock;

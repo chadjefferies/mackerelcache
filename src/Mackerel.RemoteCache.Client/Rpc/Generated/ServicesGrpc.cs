@@ -9,12 +9,12 @@ using grpc = global::Grpc.Core;
 
 namespace Mackerel.RemoteCache.Api.V1 {
   /// <summary>
-  /// Service definition for the remote cache API. 
+  /// Service definition for the Mackerel cache API. 
   /// A distributed in-memory key-value store.
   /// </summary>
-  public static partial class RemoteCacheService
+  public static partial class MackerelCacheService
   {
-    static readonly string __ServiceName = "Mackerel.RemoteCache.Api.RemoteCacheService";
+    static readonly string __ServiceName = "Mackerel.RemoteCache.Api.MackerelCacheService";
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
@@ -344,30 +344,30 @@ namespace Mackerel.RemoteCache.Api.V1 {
       get { return global::Mackerel.RemoteCache.Api.V1.ServicesReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Client for RemoteCacheService</summary>
-    public partial class RemoteCacheServiceClient : grpc::ClientBase<RemoteCacheServiceClient>
+    /// <summary>Client for MackerelCacheService</summary>
+    public partial class MackerelCacheServiceClient : grpc::ClientBase<MackerelCacheServiceClient>
     {
-      /// <summary>Creates a new client for RemoteCacheService</summary>
+      /// <summary>Creates a new client for MackerelCacheService</summary>
       /// <param name="channel">The channel to use to make remote calls.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public RemoteCacheServiceClient(grpc::ChannelBase channel) : base(channel)
+      public MackerelCacheServiceClient(grpc::ChannelBase channel) : base(channel)
       {
       }
-      /// <summary>Creates a new client for RemoteCacheService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <summary>Creates a new client for MackerelCacheService that uses a custom <c>CallInvoker</c>.</summary>
       /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public RemoteCacheServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      public MackerelCacheServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
       {
       }
       /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected RemoteCacheServiceClient() : base()
+      protected MackerelCacheServiceClient() : base()
       {
       }
       /// <summary>Protected constructor to allow creation of configured clients.</summary>
       /// <param name="configuration">The client configuration.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected RemoteCacheServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      protected MackerelCacheServiceClient(ClientBaseConfiguration configuration) : base(configuration)
       {
       }
 
@@ -1825,9 +1825,9 @@ namespace Mackerel.RemoteCache.Api.V1 {
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected override RemoteCacheServiceClient NewInstance(ClientBaseConfiguration configuration)
+      protected override MackerelCacheServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
-        return new RemoteCacheServiceClient(configuration);
+        return new MackerelCacheServiceClient(configuration);
       }
     }
 

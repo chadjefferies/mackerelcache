@@ -47,7 +47,7 @@ namespace Mackerel.RemoteCache.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<MaintenanceServiceHandler>(); 
-                endpoints.MapGrpcService<RemoteCacheServiceHandler>();
+                endpoints.MapGrpcService<MackerelCacheServiceHandler>();
                 endpoints.MapGrpcService<WatchServiceHandler>();
                 endpoints.MapGrpcReflectionService();
             });

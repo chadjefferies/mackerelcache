@@ -44,7 +44,7 @@ namespace Mackerel.RemoteCache.Server.Benchmarks
         IReadOnlyList<string> _keys;
 
         MemoryStore _memStore;
-        RemoteCacheServiceHandler _serverHandler;
+        MackerelCacheServiceHandler _serverHandler;
 
         [GlobalSetup]
         public void Setup()
@@ -56,7 +56,7 @@ namespace Mackerel.RemoteCache.Server.Benchmarks
                opt,
                stats,
                new FileSystemPartitionStorage(opt));
-            _serverHandler = new RemoteCacheServiceHandler(_memStore, new SystemClock(), Quartz.Impl.DirectSchedulerFactory.Instance, null);
+            _serverHandler = new MackerelCacheServiceHandler(_memStore, new SystemClock(), Quartz.Impl.DirectSchedulerFactory.Instance, null);
 
             _keyValues = new Dictionary<string, ByteString>(Enumerable.Range(0, 5000).Select(x =>
             new KeyValuePair<string, ByteString>(

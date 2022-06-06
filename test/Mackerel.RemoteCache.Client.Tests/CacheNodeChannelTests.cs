@@ -13,7 +13,7 @@ using Moq;
 using Xunit;
 using static Grpc.Core.Interceptors.Interceptor;
 using static Mackerel.RemoteCache.Api.V1.MaintenanceService;
-using static Mackerel.RemoteCache.Api.V1.RemoteCacheService;
+using static Mackerel.RemoteCache.Api.V1.MackerelCacheService;
 using static Mackerel.RemoteCache.Api.V1.WatchService;
 
 namespace Mackerel.RemoteCache.Client.Tests
@@ -852,7 +852,7 @@ namespace Mackerel.RemoteCache.Client.Tests
             var uri = "http://ac.com";
             var channel = GrpcChannel.ForAddress(uri);
             var serviceClient = new ServiceClient(
-                    new RemoteCacheServiceClient(channel.Intercept(_mock.Object)),
+                    new MackerelCacheServiceClient(channel.Intercept(_mock.Object)),
                     new WatchServiceClient(channel.Intercept(_mock.Object)),
                     new MaintenanceServiceClient(channel.Intercept(_mock.Object)));
             return new CacheNodeChannelImpl(

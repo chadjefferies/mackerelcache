@@ -122,7 +122,7 @@ services.AddMackerelCache<string>();
 You can configure the client by adding the following to your settings file:
 ```json
 {
-  "RemoteCache": {
+  "MackerelCache": {
     "TimeoutMilliseconds": 10000, // optional
     "SessionTimeoutMilliseconds": 15000, // optional
     "Endpoints": [ "localhost1", "localhost2" ], // required
@@ -173,7 +173,7 @@ See the following for more details.
 ### Considerations
 
 #### Ephemerality
-* The remote cache is purely in-memory, meaning all data you send to it should be ephemeral (short lived) and is volatile (can disappear). There is no guarantee that the data you cached will be available for retrieval at some point in the future.
+* Mackerel cache is purely in-memory, meaning all data you send to it should be ephemeral (short lived) and is volatile (can disappear). There is no guarantee that the data you cached will be available for retrieval at some point in the future.
 
 #### Partitioning
 * Partitions are created when needed and do not need to be configured ahead of time, however it is recommended to explicitly create a partition by calling the PutPartition method. This allows for more finer grain control over a partition's configuration which includes the ability to "reserve" a specific amount of cache capacity.

@@ -4,7 +4,7 @@ package Mackerel.RemoteCache.Api;
 
 option csharp_namespace = "Mackerel.RemoteCache.Api.V1";
 option java_multiple_files = true;
-option java_outer_classname = "RemoteCacheApi";
+option java_outer_classname = "MackerelCacheApi";
 option java_package = "com.mackerel.remotecache.api.v1";
 
 import "google/protobuf/duration.proto";

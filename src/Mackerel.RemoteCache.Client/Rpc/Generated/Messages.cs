@@ -187,9 +187,9 @@ namespace Mackerel.RemoteCache.Api.V1 {
             "Tl9JTl9VU0UQDCoqCg5FdmljdGlvblBvbGljeRIHCgNMUlUQABIPCgtOT19F",
             "VklDVElPThABKisKDkV4cGlyYXRpb25UeXBlEgsKB1NMSURJTkcQABIMCghB",
             "QlNPTFVURRABKj4KDldhdGNoRXZlbnRUeXBlEgkKBVdSSVRFEAASCgoGREVM",
-            "RVRFEAESCQoFRVZJQ1QQAhIKCgZFWFBJUkUQA0JRCh9jb20ubWFja2VyZWwu",
-            "cmVtb3RlY2FjaGUuYXBpLnYxQg5SZW1vdGVDYWNoZUFwaVABqgIbTWFja2Vy",
-            "ZWwuUmVtb3RlQ2FjaGUuQXBpLlYxYgZwcm90bzM="));
+            "RVRFEAESCQoFRVZJQ1QQAhIKCgZFWFBJUkUQA0JTCh9jb20ubWFja2VyZWwu",
+            "cmVtb3RlY2FjaGUuYXBpLnYxQhBNYWNrZXJlbENhY2hlQXBpUAGqAhtNYWNr",
+            "ZXJlbC5SZW1vdGVDYWNoZS5BcGkuVjFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.DurationReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Mackerel.RemoteCache.Api.V1.WriteResult), typeof(global::Mackerel.RemoteCache.Api.V1.EvictionPolicy), typeof(global::Mackerel.RemoteCache.Api.V1.ExpirationType), typeof(global::Mackerel.RemoteCache.Api.V1.WatchEventType), }, null, new pbr::GeneratedClrTypeInfo[] {

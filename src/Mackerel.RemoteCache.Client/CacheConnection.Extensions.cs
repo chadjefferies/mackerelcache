@@ -5,7 +5,7 @@ using Mackerel.RemoteCache.Client.Configuration;
 using Mackerel.RemoteCache.Client.Encoding;
 using Mackerel.RemoteCache.Client.Routing;
 using static Mackerel.RemoteCache.Api.V1.MaintenanceService;
-using static Mackerel.RemoteCache.Api.V1.RemoteCacheService;
+using static Mackerel.RemoteCache.Api.V1.MackerelCacheService;
 using static Mackerel.RemoteCache.Api.V1.WatchService;
 
 namespace Mackerel.RemoteCache.Client
@@ -41,7 +41,7 @@ namespace Mackerel.RemoteCache.Client
                 var uri = CacheClientOptions.ParseNode(address);
                 var channel = GrpcChannel.ForAddress(uri, grpcConfig);
                 var serviceClient = new ServiceClient(
-                    new RemoteCacheServiceClient(channel),
+                    new MackerelCacheServiceClient(channel),
                     new WatchServiceClient(channel),
                     new MaintenanceServiceClient(channel));
 
